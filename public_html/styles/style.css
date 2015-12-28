@@ -1,0 +1,224 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 18/12/2015, 23:21:05
+    Author     : Victor
+*/
+
+/* @import url(https://fonts.googleapis.com/css?family=Material+Icons); */
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../icons/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: local('Material Icons'),
+       local('MaterialIcons-Regular'),
+       url(../icons/MaterialIcons-Regular.woff2) format('woff2'),
+       url(../icons/MaterialIcons-Regular.woff) format('woff'),
+       url(../icons/MaterialIcons-Regular.ttf) format('truetype');
+}
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 10vw;/* Preferred icon size */
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;/* Support for all WebKit browsers. */
+  vertical-align: sub;
+  -webkit-font-smoothing: antialiased;/* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;/* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;/* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+}
+html, body {
+    background: black;
+    overflow: hidden;
+}
+.container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    perspective: 800px;
+    transform-origin: 50% 50%;
+    transform-style: preserve-3d;
+    transition: 2s;
+}
+.container > div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 2vw 0 #777;
+}
+.container div:nth-child(1) {
+    background: radial-gradient(ellipse at bottom, #fff 30%, #fafafa 50%, #f0f0f0 70%);
+    transform: rotateY(90deg);
+    transform-origin: left;
+}
+.container div:nth-child(2) {
+    background: radial-gradient(ellipse at bottom, #fff 40%, #fafafa 60%, #e5e5e5 80%);
+    transform: translateZ(-100vw);
+}
+.container div:nth-child(3) {
+    background: radial-gradient(ellipse at bottom, #fff 30%, #fafafa 50%, #f0f0f0 70%);
+    transform: rotateY(-90deg);
+    transform-origin: right;
+}
+.container div:nth-child(4) {
+    height: 100vw;
+    background: radial-gradient(ellipse at center, #fff 50%, #fafafa 55%, #f0f0f0 70%, #ddd 90%);
+    transform: rotateX(-90deg);
+    transform-origin: top;
+}
+.container div:nth-child(5) {
+    bottom: 0;
+    height: 100vw;
+    background: radial-gradient(ellipse at center, #fff 20%, #f0f0f0 80%);
+    transform: rotateX(90deg);
+    transform-origin: bottom;
+}
+#sphere {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 15vh;
+    max-width: 15vw;
+    height: 15vh;
+    max-height: 15vw;
+    background: linear-gradient(to bottom, #F00, #8B0000 50%, #640000);
+    border-radius: 50%;
+    animation: sphere-anim 3s ease-in-out alternate infinite;
+    z-index: 1;
+}
+#shadow {
+    position: absolute;
+    top: -25vw;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 10vh;
+    max-width: 10vw;
+    height: 10vh;
+    max-height: 10vw;
+    background: #555;
+    border-radius: 50%;
+    box-shadow: 0 0 20px 10px #555;
+    transform: perspective(800px) rotateX(0deg);
+    animation: shadow-anim 3s ease-in-out alternate infinite;
+    z-index: 1;
+}
+/* Ctrllers */
+span {
+    position: absolute;
+    width: 10vw;
+    height: 10vw;
+    color: white;
+    font-family: 'Material Icons', sans-serif;
+    text-align: center;
+    text-shadow: 0 0 2px #000;
+    animation: ctrl-anim 5s;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 1;
+}
+#l-ctrl {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+#l-ctrl:hover ~ .container {
+    transform: perspective(800px) rotateY(90deg);
+    transform-origin: left;
+    transition: 5s;
+}
+#r-ctrl {
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+}
+#r-ctrl:hover ~ .container {
+    transform: perspective(800px) rotateY(-90deg);
+    transform-origin: right;
+    transition: 5s;
+}
+#t-ctrl {
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+#t-ctrl:hover ~ .container {
+    transform: perspective(800px) rotateX(-90deg);
+    transform-origin: top;
+    transition: 5s;
+}
+#b-ctrl {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+#b-ctrl:hover ~ .container {
+    transform: perspective(800px) rotateX(90deg);
+    transform-origin: bottom;
+    transition: 5s;
+}
+/* Animagic */
+@keyframes sphere-anim {
+    0% {
+        transform: scale(.5);
+        
+    }
+    50% {
+        top: 40%;
+    }
+}
+@keyframes shadow-anim {
+    50% {
+        width: 20vh;
+        max-width: 20vw;
+        height: 20vh;
+        max-height: 20vw;
+    }
+    100% {
+        transform: translateY(50vw);
+    }
+}
+@keyframes ctrl-anim {
+    25% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    75% {
+        opacity: 1;
+    }
+}
